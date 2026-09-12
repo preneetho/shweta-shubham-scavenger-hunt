@@ -167,11 +167,16 @@
       "Figure out who I am and find my shrine."
     ],
     "task": [
-      "Take a selfie with the entire team at the shrine and send it to the Hunt Master."
+      	"Don’t arrive empty-handed!",
+		"Find something colourful and fragrant that grows on a plant and bring enough for every team member.",
+		"Once you find the First Approver, record one continuous team video where each team member, one by one, makes an offering.",
+		"Everyone must participate. No skipping! 🌼",
+		"Send the video to the Hunt Master as your final proof."
+
     ],
     "final": [
       "Your hunt for today is complete!",
-      "Head back and take some well-earned rest, but don’t disappear without informing the Hunt Master."
+      "Head back and take some well-earned rest, but don’t disappear without informing the Hunt Master. :-)"
     ]
   },
 
