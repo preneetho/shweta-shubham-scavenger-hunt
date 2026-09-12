@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, viewport-fit=cover"
+  >
+
+  <title>Shweta Shubham Scavenger Hunt 2026</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 15px;
+      background: #f3f4f6;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #222;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 560px;
+      margin: 15px auto;
+      padding: 26px 22px;
+      background: white;
+      border-radius: 18px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+    }
+
+    .title {
+      text-align: center;
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 24px;
+    }
+
+    .team {
+      text-align: center;
+      font-size: 30px;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .red { color: #d32f2f; }
+    .blue { color: #1565c0; }
+    .green { color: #2e7d32; }
+    .orange { color: #ef6c00; }
+
+    .clue-number {
+      text-align: center;
+      font-size: 20px;
+      font-weight: bold;
+      margin-bottom: 28px;
+    }
+
+    .instruction {
+      text-align: center;
+      font-size: 17px;
+      line-height: 1.5;
+      margin-bottom: 18px;
+    }
+
+    #pin {
+      display: block;
+      width: 190px;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 14px;
+      font-size: 25px;
+      text-align: center;
+      letter-spacing: 7px;
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      outline: none;
+    }
+
+    #pin:focus {
+      border-color: #555;
+    }
+
+    button {
+      display: block;
+      margin: 18px auto 0;
+      padding: 14px 28px;
+      border: none;
+      border-radius: 9px;
+      background: #222;
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .error {
+      min-height: 22px;
+      text-align: center;
+      color: #d32f2f;
+      font-weight: bold;
+      margin-top: 15px;
+    }
+
+    #loadingSection {
+      text-align: center;
+      padding: 20px;
+      font-size: 18px;
+    }
+
+    #pinSection,
+    #clueSection {
+      display: none;
+    }
+
+    .section-label {
+      font-size: 20px;
+      font-weight: 800;
+      margin-top: 22px;
+      margin-bottom: 12px;
+    }
+
+    .clue-content {
+      font-size: 19px;
+      line-height: 1.55;
+    }
+
+    .text-line {
+      margin-bottom: 7px;
+    }
+
+    .footer {
+      margin-top: 30px;
+      text-align: center;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .final-message {
+      margin-top: 25px;
+      padding: 16px;
+      border-radius: 10px;
+      background: #f7f7f7;
+      text-align: center;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 10px;
+      }
+
+      .card {
+        margin: 10px auto;
+        padding: 24px 18px;
+        border-radius: 14px;
+      }
+
+      .title {
+        font-size: 21px;
+      }
+
+      .team {
+        font-size: 28px;
+      }
+
+      .clue-content {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="card">
+
+  <div class="title">
+    Shweta Shubham Scavenger Hunt 2026
+  </div>
+
+  <div id="teamName" class="team"></div>
+
+  <div id="clueNumber" class="clue-number"></div>
+
+
+  <!-- Loading -->
+
+  <div id="loadingSection">
+    Loading hunt... 🔎
+  </div>
+
+
+  <!-- PIN Screen -->
+
+  <div id="pinSection">
+
+    <div class="instruction">
+      Enter your Team PIN to unlock the clue.
+    </div>
+
+    <input
+      id="pin"
+      type="password"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      maxlength="4"
+      autocomplete="off"
+      placeholder="••••"
+    >
+
+    <button onclick="checkPin()">
+      Unlock Clue
+    </button>
+
+    <div id="error" class="error"></div>
+
+  </div>
+
+
+  <!-- Clue Screen -->
+
+  <div id="clueSection">
+
+    <div
+      id="clueContent"
+      class="clue-content">
+    </div>
+
+    <div
+      id="finalMessage"
+      class="final-message"
+      style="display:none;">
+    </div>
+
+    <div id="footer" class="footer">
+      Good luck, detectives! 🔎
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+
+/* ======================================================
+   TEAM PINS
+   ====================================================== */
+
+const TEAM_PINS = {
+  red: "3421",
+  blue: "5690",
+  green: "6709",
+  orange: "0363"
+};
+
+
+/* ======================================================
+   URL PARAMETERS
+   ====================================================== */
+
+const params =
+  new URLSearchParams(window.location.search);
+
+const team =
+  (params.get("team") || "").toLowerCase();
+
+const questionNumber =
+  parseInt(params.get("q") || "0", 10);
+
+
+/* ======================================================
+   CLUE DATA
+   ====================================================== */
+
+let CLUES = null;
+
+
+/* ======================================================
+   VALIDATE QR URL
+   ====================================================== */
+
+if (
+  !TEAM_PINS.hasOwnProperty(team) ||
+  questionNumber < 1 ||
+  questionNumber > 10
+) {
+
+  showInvalidQR();
+
+} else {
+
+  loadClues();
+
+}
+
+
+/* ======================================================
+   LOAD CLUES.JSON
+   CACHE-BUSTING IS INTENTIONAL
+   ====================================================== */
+
+async function loadClues() {
+
+  try {
+
+    /*
+     * Date.now() makes each request unique.
+     * This prevents an old clues.json from
+     * being reused from the browser cache.
+     */
+
+    const response =
+      await fetch(
+        "./clues.json?v=" + Date.now(),
+        {
+          cache: "no-store"
+        }
+      );
+
+
+    if (!response.ok) {
+      throw new Error("Unable to load clues.");
+    }
+
+
+    CLUES =
+      await response.json();
+
+
+    if (!CLUES[questionNumber]) {
+      throw new Error("Clue not found.");
+    }
+
+
+    initialisePage();
+
+  }
+
+  catch (error) {
+
+    console.error(error);
+
+    document.getElementById(
+      "loadingSection"
+    ).innerHTML = `
+      <div style="color:#d32f2f;font-weight:bold;">
+        Unable to load the hunt.
+      </div>
+
+      <div style="
+        margin-top:12px;
+        font-size:15px;
+        line-height:1.5;
+      ">
+        Please refresh the page and try again.
+      </div>
+    `;
+
+  }
+
+}
+
+
+/* ======================================================
+   INITIALISE
+   ====================================================== */
+
+function initialisePage() {
+
+  document.getElementById(
+    "loadingSection"
+  ).style.display = "none";
+
+
+  const teamName =
+    document.getElementById("teamName");
+
+
+  teamName.textContent =
+    team.toUpperCase() + " TEAM";
+
+
+  teamName.classList.add(team);
+
+
+  document.getElementById(
+    "clueNumber"
+  ).textContent =
+    "Clue #" + questionNumber;
+
+
+  /*
+   * Each team has its own authentication
+   * flag on the device/browser.
+   */
+
+  const authenticated =
+    localStorage.getItem(
+      "ssScavengerAuthenticated_" + team
+    );
+
+
+  if (authenticated === "yes") {
+
+    showClue();
+
+  } else {
+
+    showPinScreen();
+
+  }
+
+}
+
+
+/* ======================================================
+   CHECK PIN
+   ====================================================== */
+
+function checkPin() {
+
+  const enteredPin =
+    document
+      .getElementById("pin")
+      .value
+      .trim();
+
+
+  const error =
+    document.getElementById("error");
+
+
+  error.textContent = "";
+
+
+  if (!/^\d{4}$/.test(enteredPin)) {
+
+    error.textContent =
+      "Please enter your 4-digit PIN.";
+
+    return;
+
+  }
+
+
+  if (enteredPin === TEAM_PINS[team]) {
+
+    /*
+     * Remember team authentication.
+     * PIN itself is not stored.
+     */
+
+    localStorage.setItem(
+      "ssScavengerAuthenticated_" + team,
+      "yes"
+    );
+
+
+    showClue();
+
+  } else {
+
+    error.textContent =
+      "Incorrect PIN. Try again.";
+
+
+    document
+      .getElementById("pin")
+      .value = "";
+
+
+    document
+      .getElementById("pin")
+      .focus();
+
+  }
+
+}
+
+
+/* ======================================================
+   ENTER KEY
+   ====================================================== */
+
+document
+  .getElementById("pin")
+  .addEventListener(
+    "keyup",
+    function(event) {
+
+      if (event.key === "Enter") {
+        checkPin();
+      }
+
+    }
+  );
+
+
+/* ======================================================
+   PIN SCREEN
+   ====================================================== */
+
+function showPinScreen() {
+
+  document.getElementById(
+    "pinSection"
+  ).style.display = "block";
+
+
+  document.getElementById(
+    "clueSection"
+  ).style.display = "none";
+
+
+  setTimeout(
+    function() {
+
+      document
+        .getElementById("pin")
+        .focus();
+
+    },
+    100
+  );
+
+}
+
+
+/* ======================================================
+   SHOW CLUE
+   ====================================================== */
+
+function showClue() {
+
+  document.getElementById(
+    "pinSection"
+  ).style.display = "none";
+
+
+  document.getElementById(
+    "clueSection"
+  ).style.display = "block";
+
+
+  renderClue();
+
+}
+
+
+/* ======================================================
+   RENDER CLUE
+   ====================================================== */
+
+function renderClue() {
+
+  const data =
+    CLUES[questionNumber];
+
+
+  const container =
+    document.getElementById(
+      "clueContent"
+    );
+
+
+  container.innerHTML = "";
+
+
+  /* CLUE */
+
+  const clueHeading =
+    document.createElement("div");
+
+
+  clueHeading.className =
+    "section-label";
+
+
+  clueHeading.textContent =
+    data.clueTitle || "CLUE";
+
+
+  container.appendChild(
+    clueHeading
+  );
+
+
+  data.clue.forEach(
+    function(line) {
+
+      addTextLine(
+        container,
+        line
+      );
+
+    }
+  );
+
+
+  /* TASK */
+
+  const taskHeading =
+    document.createElement("div");
+
+
+  taskHeading.className =
+    "section-label";
+
+
+  taskHeading.textContent =
+    "TASK";
+
+
+  container.appendChild(
+    taskHeading
+  );
+
+
+  data.task.forEach(
+    function(line) {
+
+      addTextLine(
+        container,
+        line
+      );
+
+    }
+  );
+
+
+  /* Q10 Final Message */
+
+  const finalMessage =
+    document.getElementById(
+      "finalMessage"
+    );
+
+
+  finalMessage.style.display =
+    "none";
+
+
+  if (
+    data.final &&
+    data.final.length > 0
+  ) {
+
+    finalMessage.innerHTML = "";
+
+
+    data.final.forEach(
+      function(line) {
+
+        const div =
+          document.createElement("div");
+
+
+        div.textContent =
+          line;
+
+
+        div.style.marginBottom =
+          "7px";
+
+
+        finalMessage.appendChild(
+          div
+        );
+
+      }
+    );
+
+
+    finalMessage.style.display =
+      "block";
+
+
+    document.getElementById(
+      "footer"
+    ).textContent =
+      "Congratulations! 🎉";
+
+  }
+
+}
+
+
+/* ======================================================
+   SAFE TEXT OUTPUT
+   ====================================================== */
+
+function addTextLine(
+  container,
+  text
+) {
+
+  const div =
+    document.createElement("div");
+
+
+  div.className =
+    "text-line";
+
+
+  div.textContent =
+    text;
+
+
+  container.appendChild(
+    div
+  );
+
+}
+
+
+/* ======================================================
+   INVALID QR
+   ====================================================== */
+
+function showInvalidQR() {
+
+  document.body.innerHTML = `
+    <div style="
+      font-family:Arial;
+      text-align:center;
+      padding:50px;
+    ">
+
+      <h2>
+        Invalid Scavenger Hunt QR Code
+      </h2>
+
+      <p>
+        Please check the QR code and try again.
+      </p>
+
+    </div>
+  `;
+
+}
+
+</script>
+
+</body>
+</html>
