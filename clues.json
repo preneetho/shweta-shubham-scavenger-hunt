@@ -1,0 +1,164 @@
+{
+  "1": {
+    "clue": [
+      "Some came here to cut cakes,",
+      "some to catch up over food,",
+      "and some arrived dressed up for an afternoon with the ladies.",
+      "Plates got lighter, glasses got emptier,",
+      "but the conversations only grew louder.",
+      "To reach the place you seek, let the number of seasons guide your rise.",
+      "Find the place. Your next clue is waiting around there."
+    ],
+    "task": [
+      "Once you reach the location, click a selfie with your entire team.",
+      "Send the photo to your Hunt Master as proof of task completion."
+    ]
+  },
+
+  "2": {
+    "clue": [
+      "Your next destination is where people enter and leave the community.",
+      "But which one?",
+      "Your hand carries the answer.",
+      "Count what nature gave it, and let that number guide you.",
+      "Reach the right spot. Your next clue is waiting there."
+    ],
+    "task": [
+      "Obtain a receipt/bill generated after 7:00 PM today, clearly showing the current date and time.",
+      "Click a selfie with all team members, with the receipt clearly visible from the above location.",
+      "Send the photo to your Hunt Master as proof of task completion."
+    ]
+  },
+
+  "3": {
+    "clue": [
+      "My name is Anahat Singh.",
+      "If Swetha Shubham were my home, there is one place I would keep returning to.",
+      "Here, a wall is not a boundary but a partner.",
+      "What you send away often comes racing back.",
+      "Two may enter to compete, but the walls play along too.",
+      "Find my favourite place. Your next clue is waiting there."
+    ],
+    "task": [
+      "Once there, take a selfie with your entire team at the location.",
+      "Send the photo to your Hunt Master as proof of task completion."
+    ]
+  },
+
+  "4": {
+    "clue": [
+      "I don’t belong to any one flat,",
+      "yet I deal with matters of them all.",
+      "Requests, records and resident concerns",
+      "often find their way to my door.",
+      "Find me. Your next clue is waiting there."
+    ],
+    "task": [
+      "Record a video of one team member cycling continuously for at least 30 seconds.",
+      "Then click a selfie with your entire team and the cycle.",
+      "Send both the video and team photo to your Hunt Master as proof of task completion."
+    ]
+  },
+
+  "5": {
+    "clue": [
+      "I notice those who come and go.",
+      "I stay alert while others relax.",
+      "I watch without wandering,",
+      "and keeping the society safe is my everyday job.",
+      "Find where I belong. Your next clue is waiting there."
+    ],
+    "task": [
+      "21st June celebrates an ancient practice that India shared with the world.",
+      "Solve what it is, then bring the one thing you would normally unroll before beginning the practice.",
+      "Get 3 team members into a blissful pose with your newly found companion.",
+      "Click a picture and send it to your Hunt Master as proof of task completion."
+    ]
+  },
+
+  "6": {
+    "clue": [
+      "I hold plenty, yet I am never thirsty.",
+      "People come to me to move, yet often remain in the same place.",
+      "Some race across me, some simply float,",
+      "and the deeper you go, the quieter the world becomes.",
+      "Find me. Your next clue is waiting around me."
+    ],
+    "task": [
+      "Once you reach the right place, gather your entire team beside me and strike your best pose.",
+      "Click a team photo and send it to your Hunt Master as proof of task completion."
+    ]
+  },
+
+  "7": {
+    "clue": [
+      "I have many seats, but no dining table.",
+      "Everyone faces one direction, but no teacher stands there.",
+      "Sometimes I am silent, sometimes I come alive with a crowd.",
+      "I have no roof to hide under, yet I was made to bring people together.",
+      "Find me. Your next clue is waiting there."
+    ],
+    "task": [
+      "Once you reach the right place, your challenge begins.",
+      "Capture pictures of 3 different cars belonging to the same brand.",
+      "There is one catch: at least one teammate must appear in every picture.",
+      "Once all 3 are captured, send the complete set of photos to your Hunt Master as proof of task completion."
+    ]
+  },
+
+  "8": {
+    "clue": [
+      "I hold something everyone needs,",
+      "yet no one comes here to drink from me.",
+      "I quietly keep a reserve for hundreds of homes,",
+      "while the taps far above depend on me.",
+      "But don’t look towards the sky for me.",
+      "From where the cars rest, let twice below zero guide your way.",
+      "Figure out this place.",
+      "Your next clue is waiting around there."
+    ],
+    "task": [
+      "Find 2 different varieties of something that:",
+      "I grow from a flower.",
+      "I may hide one seed or many.",
+      "I can be juicy, pulpy, sweet or tangy.",
+      "And once I ripen, I rarely stay uneaten for long.",
+      "Got them?",
+      "Now head to the destination you decoded.",
+      "Take a picture with your entire team at the destination, with both varieties clearly visible.",
+      "Send the photo to your Hunt Master as proof of task completion."
+    ]
+  },
+
+  "9": {
+    "clueTitle": "CLUE: THE GREEN CIRCUIT",
+    "clue": [
+      "Eight green corners are scattered around your community. Your mission is to leave none of them unexplored.",
+      "Only one of the eight holds what you are looking for.",
+      "Keep your eyes sharp and let the seventh stop reward those who have come this far."
+    ],
+    "task": [
+      "Visit all eight parks in the community.",
+      "Click a group selfie with the entire team at each park.",
+      "That means eight parks = eight team selfies.",
+      "Send all eight photos to the Hunt Master, find the hidden clue, and continue your hunt."
+    ]
+  },
+
+  "10": {
+    "clue": [
+      "I am available 365 days a year, quietly watching over you all.",
+      "Before a new beginning, journey, or important mission, many come looking for my blessing and sign-off.",
+      "I’m not on Teams, I never reply to emails, and you’ll never find my name in an approval workflow.",
+      "The first approver of every good beginning awaits.",
+      "Figure out who I am and find my shrine."
+    ],
+    "task": [
+      "Take a selfie with the entire team at the shrine and send it to the Hunt Master."
+    ],
+    "final": [
+      "Your hunt for today is complete!",
+      "Head back and take some well-earned rest, but don’t disappear without informing the Hunt Master."
+    ]
+  }
+}
