@@ -45,8 +45,11 @@
       "Find my favourite place. Your next clue is waiting there."
     ],
     "task": [
-      "Once there, take a selfie with your entire team at the location.",
-      "Send the photo to your Hunt Master as proof of task completion."
+		"TEAM RALLY CHALLENGE!",
+		"Once you reach the location, line up the entire team.",
+		"Without using a ball, complete an imaginary rally: the first person makes a dramatic squash shot, the next person continues the rally, and so on until every team member has played one imaginary shot.",
+		"Record the entire rally as one continuous video. The more dramatic the shots, the better!",
+		"Send the video to your Hunt Master as proof of task completion."
     ]
   },
 
