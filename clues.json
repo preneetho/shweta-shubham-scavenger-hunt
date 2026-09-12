@@ -93,8 +93,13 @@
       "Find me. Your next clue is waiting around me."
     ],
     "task": [
-      "Once you reach the right place, gather your entire team beside me and strike your best pose.",
-      "Click a team photo and send it to your Hunt Master as proof of task completion."
+     
+		"Once you reach the location, line up the entire team beside it.",
+		"Create a Human Wave: Starting from one end, each teammate must raise and lower both hands one after another, creating one continuous wave across the team.",
+		"🎥 Record the complete wave in a single continuous video.",
+		"Bonus: End the wave with the entire team shouting HUNT ON!",
+		"Send the video to the Hunt Master as proof of task completion."
+
     ]
   },
 
