@@ -1,206 +1,395 @@
 <!DOCTYPE html>
 <html>
+
 <head>
+
   <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
 
-  <title>Shweta Shubham Scavenger Hunt 2026</title>
+  <title>
+    Shweta Shubham Scavenger Hunt 2026
+  </title>
+
 
   <style>
+
     * {
       box-sizing: border-box;
     }
 
+
     body {
+
       margin: 0;
+
       padding: 15px;
+
       background: #f3f4f6;
-      font-family: Arial, Helvetica, sans-serif;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
       color: #222;
+
     }
+
 
     .card {
+
       max-width: 560px;
+
       margin: 15px auto;
+
       padding: 26px 22px;
+
       background: white;
+
       border-radius: 18px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+
+      box-shadow:
+        0 5px 20px
+        rgba(0,0,0,0.15);
+
     }
+
 
     .title {
+
       text-align: center;
+
       font-size: 23px;
+
       font-weight: 700;
+
       margin-bottom: 20px;
+
     }
 
+
     .team {
+
       text-align: center;
+
       font-size: 30px;
+
       font-weight: 800;
+
       text-transform: uppercase;
+
       margin-bottom: 10px;
+
     }
+
 
     .red {
       color: #d32f2f;
     }
 
+
     .blue {
       color: #1565c0;
     }
+
 
     .green {
       color: #2e7d32;
     }
 
+
     .orange {
       color: #ef6c00;
     }
 
+
     .clue-number {
+
       text-align: center;
+
       font-size: 20px;
+
       font-weight: bold;
+
       margin-bottom: 25px;
+
     }
+
 
     .instruction {
+
       text-align: center;
+
       font-size: 17px;
+
       line-height: 1.5;
+
       margin-bottom: 18px;
+
     }
+
 
     #pin {
+
       display: block;
+
       width: 190px;
+
       margin: auto;
+
       padding: 14px;
+
       font-size: 25px;
+
       text-align: center;
+
       letter-spacing: 7px;
-      border: 2px solid #ccc;
+
+      border:
+        2px solid #ccc;
+
       border-radius: 10px;
+
       outline: none;
+
     }
+
 
     #pin:focus {
+
       border-color: #555;
+
     }
+
 
     button {
+
       display: block;
+
       margin: 18px auto 0;
+
       padding: 14px 28px;
+
       border: none;
+
       border-radius: 9px;
+
       background: #222;
+
       color: white;
+
       font-size: 17px;
+
       font-weight: bold;
+
       cursor: pointer;
+
     }
+
 
     button:disabled {
+
       opacity: 0.6;
+
       cursor: wait;
+
     }
 
+
     .error {
+
       min-height: 22px;
+
       text-align: center;
+
       color: #d32f2f;
+
       font-weight: bold;
+
       margin-top: 15px;
+
     }
+
 
     #clueSection,
     #loadingSection {
+
       display: none;
+
     }
+
 
     #loadingSection {
+
       text-align: center;
+
       padding: 25px;
+
       font-size: 18px;
+
     }
+
 
     .clue-content {
+
       font-size: 19px;
+
       line-height: 1.55;
+
     }
+
 
     .section-label {
+
       font-size: 20px;
+
       font-weight: 800;
+
       margin-top: 22px;
+
       margin-bottom: 10px;
+
     }
+
 
     .text-line {
+
       margin-bottom: 5px;
+
     }
+
 
     .blank-line {
+
       height: 10px;
+
     }
+
 
     .footer {
+
       margin-top: 28px;
+
       text-align: center;
+
       font-weight: 600;
+
     }
+
+
+    /*
+     * Backend iframe stays invisible.
+     */
+
+    #apiFrames {
+
+      position: fixed;
+
+      width: 1px;
+
+      height: 1px;
+
+      overflow: hidden;
+
+      opacity: 0;
+
+      pointer-events: none;
+
+      left: -9999px;
+
+      top: -9999px;
+
+    }
+
 
     @media (max-width: 600px) {
+
       body {
+
         padding: 10px;
+
       }
+
 
       .card {
+
         margin: 10px auto;
+
         padding: 24px 18px;
+
         border-radius: 14px;
+
       }
+
 
       .title {
+
         font-size: 21px;
+
       }
+
 
       .team {
+
         font-size: 27px;
+
       }
 
+
       .clue-content {
+
         font-size: 18px;
+
       }
+
     }
+
   </style>
+
 </head>
+
 
 <body>
 
+
 <div class="card">
 
+
   <div class="title">
+
     Shweta Shubham Scavenger Hunt 2026
+
   </div>
 
-  <div id="teamName" class="team"></div>
 
-  <div id="clueNumber" class="clue-number"></div>
+  <div
+    id="teamName"
+    class="team">
+  </div>
 
 
-  <!-- PIN SECTION -->
+  <div
+    id="clueNumber"
+    class="clue-number">
+  </div>
+
+
+
+  <!-- PIN AREA -->
 
   <div id="pinSection">
 
+
     <div class="instruction">
+
       Enter your Team PIN to unlock the clue.
+
     </div>
+
 
     <input
       id="pin"
@@ -212,248 +401,604 @@
       placeholder="••••"
     >
 
-    <button id="unlockButton" onclick="checkPin()">
+
+    <button
+      id="unlockButton"
+      onclick="checkPin()">
+
       Unlock Clue
+
     </button>
 
-    <div id="error" class="error"></div>
+
+    <div
+      id="error"
+      class="error">
+    </div>
+
 
   </div>
 
 
-  <!-- LOADING SECTION -->
+
+  <!-- LOADING AREA -->
 
   <div id="loadingSection">
+
     Unlocking your clue... 🔎
+
   </div>
 
 
-  <!-- CLUE SECTION -->
+
+  <!-- CLUE AREA -->
 
   <div id="clueSection">
 
-    <div id="clueContent" class="clue-content"></div>
 
-    <div class="footer">
-      Good luck, detectives! 🔎
+    <div
+      id="clueContent"
+      class="clue-content">
     </div>
 
+
+    <div class="footer">
+
+      Good luck, detectives! 🔎
+
+    </div>
+
+
   </div>
+
 
 </div>
 
 
+
+<!--
+  Hidden Apps Script iframes
+  will temporarily live here.
+-->
+
+<div id="apiFrames"></div>
+
+
+
 <script>
+
+
+/*
+ * ==========================================
+ * CONFIGURATION
+ * ==========================================
+ */
 
 const API_URL =
   'https://script.google.com/macros/s/AKfycbwbqRDCVo4wRfKRXWZxivgCdzgmb5VbsDhvXqNueFo-QB7D-ogZN8B3DmBpJEz9k-W4KQ/exec';
 
 
 const params =
-  new URLSearchParams(window.location.search);
+  new URLSearchParams(
+    window.location.search
+  );
 
 
 const team =
-  (params.get('team') || '').toLowerCase();
+  (params.get('team') || '')
+    .toLowerCase();
 
 
 const questionNumber =
-  parseInt(params.get('q') || '0', 10);
+  parseInt(
+    params.get('q') || '0',
+    10
+  );
 
 
 const validTeams =
-  ['red', 'blue', 'green', 'orange'];
+  [
+    'red',
+    'blue',
+    'green',
+    'orange'
+  ];
 
 
 /*
- * Validate QR parameters
+ * Pending iframe requests.
+ *
+ * requestId → callback information
+ */
+
+const pendingRequests = {};
+
+
+/*
+ * ==========================================
+ * VALIDATE URL
+ * ==========================================
  */
 
 if (
+
   !validTeams.includes(team) ||
+
   questionNumber < 1 ||
+
   questionNumber > 10
+
 ) {
 
+
   document.body.innerHTML =
+
     '<div style="' +
+
     'font-family:Arial;' +
+
     'text-align:center;' +
+
     'padding:50px;' +
+
     '">' +
-    '<h2>Invalid Scavenger Hunt QR Code</h2>' +
-    '<p>Please check the QR code and try again.</p>' +
+
+    '<h2>' +
+
+    'Invalid Scavenger Hunt QR Code' +
+
+    '</h2>' +
+
+    '<p>' +
+
+    'Please check the QR code and try again.' +
+
+    '</p>' +
+
     '</div>';
 
-} else {
+
+}
+
+else {
+
 
   setupPage();
+
 
 }
 
 
 /*
- * Initial page setup
+ * ==========================================
+ * INITIAL SETUP
+ * ==========================================
  */
 
 function setupPage() {
 
+
   const teamName =
-    document.getElementById('teamName');
+    document.getElementById(
+      'teamName'
+    );
+
 
   teamName.textContent =
-    team.toUpperCase() + ' TEAM';
+    team.toUpperCase() +
+    ' TEAM';
 
-  teamName.classList.add(team);
+
+  teamName.classList.add(
+    team
+  );
 
 
   document.getElementById(
     'clueNumber'
   ).textContent =
-    'Clue #' + questionNumber;
 
+    'Clue #' +
+    questionNumber;
+
+
+  /*
+   * One token stored per team.
+   */
 
   const savedToken =
     localStorage.getItem(
-      'scavengerAuth_' + team
+      'scavengerAuth_' +
+      team
     );
 
 
   if (savedToken) {
 
-    loadClue(savedToken);
 
-  } else {
+    loadClue(
+      savedToken
+    );
+
+
+  }
+
+  else {
+
 
     showPin();
 
+
   }
+
 }
 
 
 /*
- * Press ENTER to submit PIN
+ * ENTER key support
  */
 
-document
-  .getElementById('pin')
-  ?.addEventListener(
-    'keyup',
-    function(event) {
-
-      if (event.key === 'Enter') {
-        checkPin();
-      }
-
-    }
+const pinInput =
+  document.getElementById(
+    'pin'
   );
 
 
-/*
- * JSONP helper
- */
-
-function jsonp(parameters, callback) {
-
-  const callbackName =
-    'huntCallback_' +
-    Date.now() +
-    '_' +
-    Math.floor(Math.random() * 100000);
+if (pinInput) {
 
 
-  window[callbackName] =
-    function(result) {
+  pinInput.addEventListener(
 
-      delete window[callbackName];
+    'keyup',
 
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
+    function(event) {
+
+
+      if (
+        event.key === 'Enter'
+      ) {
+
+
+        checkPin();
+
+
       }
 
-      callback(result);
+    }
 
-    };
+  );
 
 
-  parameters.callback =
-    callbackName;
+}
+
+
+/*
+ * ==========================================
+ * MESSAGE FROM APPS SCRIPT IFRAME
+ * ==========================================
+ */
+
+window.addEventListener(
+
+  'message',
+
+  function(event) {
+
+
+    /*
+     * Apps Script can ultimately run from
+     * script.googleusercontent.com after
+     * Google's redirect.
+     *
+     * Only accept Google's HTTPS origins.
+     */
+
+    let validOrigin = false;
+
+
+    try {
+
+
+      const originUrl =
+        new URL(
+          event.origin
+        );
+
+
+      validOrigin =
+
+        originUrl.protocol === 'https:' &&
+
+        (
+          originUrl.hostname ===
+            'script.google.com'
+
+          ||
+
+          originUrl.hostname.endsWith(
+            '.googleusercontent.com'
+          )
+
+          ||
+
+          originUrl.hostname ===
+            'script.googleusercontent.com'
+        );
+
+
+    }
+
+    catch (error) {
+
+
+      validOrigin = false;
+
+
+    }
+
+
+    if (!validOrigin) {
+
+
+      return;
+
+
+    }
+
+
+    const data =
+      event.data;
+
+
+    if (
+
+      !data ||
+
+      data.source !==
+        'SS_SCAVENGER_API' ||
+
+      !data.requestId
+
+    ) {
+
+
+      return;
+
+
+    }
+
+
+    const pending =
+      pendingRequests[
+        data.requestId
+      ];
+
+
+    if (!pending) {
+
+
+      return;
+
+
+    }
+
+
+    clearTimeout(
+      pending.timeout
+    );
+
+
+    if (
+      pending.iframe &&
+      pending.iframe.parentNode
+    ) {
+
+
+      pending.iframe
+        .parentNode
+        .removeChild(
+          pending.iframe
+        );
+
+
+    }
+
+
+    delete pendingRequests[
+      data.requestId
+    ];
+
+
+    pending.callback(
+      data.result
+    );
+
+
+  }
+
+);
+
+
+/*
+ * ==========================================
+ * APPS SCRIPT REQUEST
+ * ==========================================
+ */
+
+function apiRequest(
+  parameters,
+  callback
+) {
+
+
+  const requestId =
+
+    'req_' +
+
+    Date.now() +
+
+    '_' +
+
+    Math.floor(
+      Math.random() *
+      1000000
+    );
+
+
+  parameters.requestId =
+    requestId;
 
 
   const query =
-    new URLSearchParams(parameters);
+    new URLSearchParams(
+      parameters
+    );
 
 
-  const script =
-    document.createElement('script');
+  const iframe =
+    document.createElement(
+      'iframe'
+    );
 
 
-  script.src =
+  iframe.style.display =
+    'none';
+
+
+  iframe.src =
     API_URL +
     '?' +
     query.toString();
 
 
-  script.onerror =
-    function() {
+  /*
+   * Timeout protects against network
+   * failure or browser problems.
+   */
 
-      delete window[callbackName];
+  const timeout =
+    setTimeout(
 
-      if (script.parentNode) {
-        script.parentNode.removeChild(script);
-      }
-
-      callback({
-        success: false,
-        message: 'Unable to contact server.'
-      });
-
-    };
+      function() {
 
 
-  document.body.appendChild(script);
+        if (
+          iframe.parentNode
+        ) {
+
+
+          iframe
+            .parentNode
+            .removeChild(
+              iframe
+            );
+
+
+        }
+
+
+        delete pendingRequests[
+          requestId
+        ];
+
+
+        callback({
+
+          success: false,
+
+          message:
+            'Unable to contact server.'
+
+        });
+
+
+      },
+
+      15000
+
+    );
+
+
+  pendingRequests[
+    requestId
+  ] = {
+
+    callback: callback,
+
+    iframe: iframe,
+
+    timeout: timeout
+
+  };
+
+
+  document.getElementById(
+    'apiFrames'
+  ).appendChild(
+    iframe
+  );
+
 
 }
 
 
 /*
- * Validate Team PIN
+ * ==========================================
+ * PIN LOGIN
+ * ==========================================
  */
 
 function checkPin() {
 
+
   const pin =
     document
-      .getElementById('pin')
+      .getElementById(
+        'pin'
+      )
       .value
       .trim();
 
 
   const error =
-    document.getElementById('error');
+    document.getElementById(
+      'error'
+    );
 
 
   const button =
-    document.getElementById('unlockButton');
+    document.getElementById(
+      'unlockButton'
+    );
 
 
-  error.textContent = '';
+  error.textContent =
+    '';
 
 
   if (
+
     pin.length !== 4 ||
+
     !/^\d{4}$/.test(pin)
+
   ) {
 
+
     error.textContent =
+
       'Please enter your 4-digit PIN.';
 
+
     return;
+
 
   }
 
 
-  button.disabled = true;
+  button.disabled =
+    true;
+
 
   button.textContent =
     'Checking...';
@@ -462,29 +1007,50 @@ function checkPin() {
   showLoading();
 
 
-  jsonp(
+  apiRequest(
+
     {
+
       action: 'login',
+
       team: team,
+
       pin: pin
+
     },
+
 
     function(result) {
 
-      button.disabled = false;
+
+      button.disabled =
+        false;
+
 
       button.textContent =
         'Unlock Clue';
 
 
       if (
+
         result &&
+
         result.success
+
       ) {
 
+
+        /*
+         * Store token, NOT PIN.
+         */
+
         localStorage.setItem(
-          'scavengerAuth_' + team,
+
+          'scavengerAuth_' +
+          team,
+
           result.token
+
         );
 
 
@@ -492,87 +1058,150 @@ function checkPin() {
           result.token
         );
 
-      } else {
-
-        showPin();
-
-        document
-          .getElementById('pin')
-          .value = '';
-
-
-        error.textContent =
-          result &&
-          result.message
-            ? result.message
-            : 'Incorrect PIN. Try again.';
 
       }
 
+      else {
+
+
+        showPin();
+
+
+        document
+          .getElementById(
+            'pin'
+          )
+          .value =
+            '';
+
+
+        error.textContent =
+
+          result &&
+          result.message
+
+            ? result.message
+
+            : 'Incorrect PIN. Try again.';
+
+
+      }
+
+
     }
+
   );
+
 
 }
 
 
 /*
- * Load clue from Apps Script backend
+ * ==========================================
+ * GET CLUE
+ * ==========================================
  */
 
-function loadClue(token) {
+function loadClue(
+  token
+) {
+
 
   showLoading();
 
 
-  jsonp(
+  apiRequest(
+
     {
-      action: 'clue',
-      team: team,
-      q: questionNumber,
-      token: token
+
+      action:
+        'clue',
+
+      team:
+        team,
+
+      q:
+        questionNumber,
+
+      token:
+        token
+
     },
+
 
     function(result) {
 
+
       if (
+
         result &&
+
         result.success
+
       ) {
+
 
         renderClue(
           result.clue
         );
 
+
         showClue();
 
-      } else {
+
+      }
+
+      else {
+
+
+        /*
+         * Token expired/invalid.
+         */
 
         localStorage.removeItem(
-          'scavengerAuth_' + team
+
+          'scavengerAuth_' +
+          team
+
         );
 
 
         showPin();
 
 
-        document
-          .getElementById('error')
-          .textContent =
-            'Please enter your Team PIN again.';
+        document.getElementById(
+          'error'
+        ).textContent =
+
+          result &&
+          result.message
+
+            ? result.message
+
+            : 'Please enter your Team PIN again.';
+
 
       }
 
+
     }
+
   );
+
 
 }
 
 
 /*
- * Format clue text coming from Google Sheet
+ * ==========================================
+ * FORMAT CLUE
+ * ==========================================
  */
 
-function renderClue(text) {
+function renderClue(
+  text
+) {
+
 
   const container =
     document.getElementById(
@@ -580,143 +1209,222 @@ function renderClue(text) {
     );
 
 
-  container.innerHTML = '';
+  container.innerHTML =
+    '';
 
 
   const normalizedText =
-    String(text || '')
-      .replace(/\r\n/g, '\n')
-      .replace(/\r/g, '\n');
+
+    String(
+      text || ''
+    )
+
+      .replace(
+        /\r\n/g,
+        '\n'
+      )
+
+      .replace(
+        /\r/g,
+        '\n'
+      );
 
 
   const lines =
-    normalizedText.split('\n');
+    normalizedText
+      .split('\n');
 
 
   lines.forEach(
+
     function(line) {
+
 
       const trimmed =
         line.trim();
 
 
       const element =
-        document.createElement('div');
+        document.createElement(
+          'div'
+        );
+
+
+      const upper =
+        trimmed
+          .toUpperCase();
 
 
       if (
-        trimmed.toUpperCase() === 'CLUE' ||
-        trimmed.toUpperCase() === 'CLUE:' ||
-        trimmed.toUpperCase() === 'TASK' ||
-        trimmed.toUpperCase() === 'TASK:'
+
+        upper === 'CLUE' ||
+
+        upper === 'CLUE:' ||
+
+        upper === 'TASK' ||
+
+        upper === 'TASK:'
+
       ) {
+
 
         element.className =
           'section-label';
 
+
         element.textContent =
-          trimmed.replace(':', '');
+          trimmed.replace(
+            ':',
+            ''
+          );
+
 
       }
+
 
       else if (
         trimmed === ''
       ) {
 
+
         element.className =
           'blank-line';
 
+
       }
 
+
       else {
+
 
         element.className =
           'text-line';
 
+
+        /*
+         * textContent protects against
+         * HTML/script injection from sheet.
+         */
+
         element.textContent =
           line;
+
 
       }
 
 
-      container.appendChild(element);
+      container.appendChild(
+        element
+      );
+
 
     }
+
   );
+
 
 }
 
 
 /*
- * Display helpers
+ * ==========================================
+ * DISPLAY HELPERS
+ * ==========================================
  */
 
 function showPin() {
 
+
   document
-    .getElementById('pinSection')
+    .getElementById(
+      'pinSection'
+    )
     .style.display =
       'block';
 
 
   document
-    .getElementById('loadingSection')
+    .getElementById(
+      'loadingSection'
+    )
     .style.display =
       'none';
 
 
   document
-    .getElementById('clueSection')
+    .getElementById(
+      'clueSection'
+    )
     .style.display =
       'none';
+
 
 }
 
 
 function showLoading() {
 
+
   document
-    .getElementById('pinSection')
+    .getElementById(
+      'pinSection'
+    )
     .style.display =
       'none';
 
 
   document
-    .getElementById('loadingSection')
+    .getElementById(
+      'loadingSection'
+    )
     .style.display =
       'block';
 
 
   document
-    .getElementById('clueSection')
+    .getElementById(
+      'clueSection'
+    )
     .style.display =
       'none';
+
 
 }
 
 
 function showClue() {
 
+
   document
-    .getElementById('pinSection')
+    .getElementById(
+      'pinSection'
+    )
     .style.display =
       'none';
 
 
   document
-    .getElementById('loadingSection')
+    .getElementById(
+      'loadingSection'
+    )
     .style.display =
       'none';
 
 
   document
-    .getElementById('clueSection')
+    .getElementById(
+      'clueSection'
+    )
     .style.display =
       'block';
 
+
 }
+
 
 </script>
 
+
 </body>
+
 </html>
