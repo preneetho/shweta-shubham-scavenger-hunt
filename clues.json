@@ -161,4 +161,19 @@
       "Head back and take some well-earned rest, but don’t disappear without informing the Hunt Master."
     ]
   }
+
+  "11": {
+  "clue": [
+    "This is a sample clue for testing.",
+    "If you can see this message, the QR code and clue page are working correctly."
+  ],
+  "task": [
+    "Take a selfie with your entire team.",
+    "Send the photo to the Hunt Master as proof of task completion."
+  ],
+  "final": [
+    "Test completed successfully!",
+    "You have reached Sample Clue #11."
+  ]
+}
 }
